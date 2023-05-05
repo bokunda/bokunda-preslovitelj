@@ -1,2 +1,7 @@
-<p>translator-main works!</p>
-<app-translator-edit></app-translator-edit>
+<div class="container">
+  <div>
+    <h1>Bokunda Preslovitelj</h1>
+  </div>
+  <app-translator-edit [translatedText]="translatedText" (submitForm)="onSubmitForm($event)"></app-translator-edit>
+</div>
+
