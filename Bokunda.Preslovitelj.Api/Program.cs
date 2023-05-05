@@ -1,10 +1,6 @@
 using System.Reflection;
 using Bokunda.Preslovitelj.Cqrs.Commands;
 using Bokunda.Preslovitelj.Domain;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using NSwag;
-using NSwag.Generation.Processors.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: myAllowSpecificOrigins,
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 // Register Swagger Services.
 builder.Services.AddSwaggerDocument(settings =>
@@ -37,5 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(myAllowSpecificOrigins);
+
 
 app.Run();

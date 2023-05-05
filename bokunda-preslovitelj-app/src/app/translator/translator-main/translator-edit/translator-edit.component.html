@@ -11,6 +11,6 @@
   </form>
 
   <div class="row">
-    <button mat-raised-button color="accent" class="w-100" (click)="submit()">Preslovi</button>
+    <button mat-raised-button color="accent" class="w-100" (click)="submit()" [disabled]="!form.valid">Preslovi</button>
   </div>
 </div>

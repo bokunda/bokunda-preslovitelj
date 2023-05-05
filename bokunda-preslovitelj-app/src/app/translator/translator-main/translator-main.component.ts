@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { TranslateTextCommand } from 'src/app/api/api-reference';
+import { TranslationClient } from 'src/app/api/api-reference';
 
 @Component({
   selector: 'app-translator-main',
@@ -9,7 +11,13 @@ import { FormGroup } from '@angular/forms';
 export class TranslatorMainComponent {
   translatedText: string | undefined;
 
-  onSubmitForm(event: FormGroup): void {
-    console.log(event);
+  constructor(private translationClient: TranslationClient) { }
+
+  onSubmitForm(form: FormGroup): void {
+    console.log(form);
+    this.translationClient.translate(form as unknown as TranslateTextCommand).subscribe(response => {
+      console.log(response);
+      this.translatedText = response.translatedText;
+    });
   }
 }
