@@ -1,0 +1,16 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col original-text">
+        <textarea class="w-100-h-50" formControlName="text"></textarea>
+      </div>
+      <div class="col translated-text">
+        <textarea class="w-100-h-50" readonly>{{ translatedText }}</textarea>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <button mat-raised-button color="accent" class="w-100" (click)="submit()" [disabled]="!form.valid">Preslovi</button>
+  </div>
+</div>
