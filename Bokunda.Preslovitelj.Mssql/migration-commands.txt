@@ -1,0 +1,14 @@
+﻿// Define environment where migration should be executed
+$env:ASPNETCORE_ENVIRONMENT='DEV'
+
+// Create migration
+Add-Migration -Project Bokunda.Preslovitelj.Mssql -Name TODO -Context PresloviteljContext
+
+// Update database
+Update-Database -Project Bokunda.Preslovitelj.Mssql -Context PresloviteljContext
+
+//debbuger
+if (System.Diagnostics.Debugger.IsAttached == false) System.Diagnostics.Debugger.Launch();
+
+// EF Core 6 - history 
+https://devblogs.microsoft.com/dotnet/prime-your-flux-capacitor-sql-server-temporal-tables-in-ef-core-6-0/
